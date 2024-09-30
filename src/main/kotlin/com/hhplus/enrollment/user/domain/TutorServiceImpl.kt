@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service
 class TutorServiceImpl(
     private val tutorRepository: TutorRepository
 ): TutorService {
-    override fun getLecture(tutorParam: TutorParam): TutorResult {
+    override fun getTutor(tutorParam: TutorParam): TutorResult {
         val result = tutorRepository.getTutor(tutorParam.toQuery())
+        return TutorResult.from(result)
     }
 
 }
