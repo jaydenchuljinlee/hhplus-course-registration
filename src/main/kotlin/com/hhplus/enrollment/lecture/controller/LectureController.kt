@@ -15,7 +15,7 @@ class LectureController(
     private val enrollmentFacade: EnrollmentFacade,
     private val lectureFacade: LectureFacade,
 ) {
-    @PostMapping()
+    @PostMapping("enrollment")
     fun enrollment(
         @RequestBody enrollmentRequest: EnrollmentRequest): EnrollmentResponse {
         val result = enrollmentFacade.enroll(enrollmentRequest.toCommand())

@@ -3,9 +3,9 @@ package com.hhplus.enrollment.lecture.infrastructure
 import com.hhplus.enrollment.lecture.infrastructure.jpa.EnrollmentJpaRepository
 import com.hhplus.enrollment.lecture.infrastructure.projection.EnrollmentProjection
 import com.hhplus.enrollment.lecture.infrastructure.query.EnrollmentQuery
-import org.springframework.stereotype.Repository
+import org.springframework.stereotype.Component
 
-@Repository
+@Component
 class EnrollmentRepositoryImpl(
     private val jpaRepository: EnrollmentJpaRepository
 ): EnrollmentRepository {

@@ -6,7 +6,7 @@ import jakarta.persistence.*
 @Entity
 data class EnrollmentHistoryTable(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long,
+    var id: Long = 0L,
     @Column(name = "enrollment_id", nullable = false)
     var enrollmentId: Long,
     @Column(name = "trainee_id", nullable = false)

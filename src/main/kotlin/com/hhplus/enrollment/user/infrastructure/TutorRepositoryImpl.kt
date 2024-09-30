@@ -3,9 +3,9 @@ package com.hhplus.enrollment.user.infrastructure
 import com.hhplus.enrollment.user.infrastructure.jpa.TutorJapRepository
 import com.hhplus.enrollment.user.infrastructure.projection.TutorProjection
 import com.hhplus.enrollment.user.infrastructure.query.TutorQuery
-import org.springframework.stereotype.Repository
+import org.springframework.stereotype.Component
 
-@Repository
+@Component
 class TutorRepositoryImpl(
     private val jpaRepository: TutorJapRepository
 ): TutorRepository {

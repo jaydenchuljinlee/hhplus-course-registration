@@ -9,7 +9,7 @@ data class EnrollmentResult(
     companion object {
         fun from(enrollmentProjection: EnrollmentProjection) = EnrollmentResult(
             lectureId = enrollmentProjection.lectureId,
-            studentId = enrollmentProjection.studentId
+            studentId = enrollmentProjection.traineeId
         )
     }
 }
