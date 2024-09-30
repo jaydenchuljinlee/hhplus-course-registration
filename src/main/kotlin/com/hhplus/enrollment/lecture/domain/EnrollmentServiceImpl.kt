@@ -22,14 +22,7 @@ class EnrollmentServiceImpl(
         validator.validate(param)
         val result = enrollmentRepository.enroll(param.toQuery())
 
-        val historyQuery = EnrollmentHistoryInsertionQuery(
-            enrollmentId = result.enrollmentId,
-            lectureId = result.lectureId,
-            traineeId = result.traineeId,
-            acceptYn = true,
-            cancelYn = false,
-        )
-        enrollmentHistoryRepository.insert(historyQuery)
+        enrollmentHistoryRepository.insert(result.toHistory())
         return EnrollmentResult.from(result)
     }
 
