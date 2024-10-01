@@ -36,12 +36,14 @@ CREATE TABLE trainee (
 
 -- 강의 관련 테이블
 CREATE TABLE lecture (
-     id BIGINT AUTO_INCREMENT PRIMARY KEY, -- 기본 키
-     lecture_name VARCHAR(200) NOT NULL, -- 강의 이름
-     description TEXT, -- 강의 설명
-     tutor_id BIGINT, -- 강의자 (외래 키: Tutor 테이블의 id)
-     capacity INT DEFAULT 0, -- 수강 인원
-     open_yn CHAR(1) DEFAULT 'Y' NOT NULL, -- 개설 여부 (Y/N)
+    id BIGINT AUTO_INCREMENT PRIMARY KEY, -- 기본 키
+    lecture_name VARCHAR(200) NOT NULL, -- 강의 이름
+    description TEXT, -- 강의 설명
+    tutor_id BIGINT, -- 강의자 (외래 키: Tutor 테이블의 id)
+    capacity INT DEFAULT 0, -- 수강 인원
+    open_yn CHAR(1) DEFAULT 'Y' NOT NULL, -- 개설 여부 (Y/N)
+    apply_start_dt TIMESTAMP NOT NULL, -- 신청 시작일,
+    apply_end_dt TIMESTAMP NOT NULL, -- 신청 종료일,
 
     -- 베이스 필드
      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 생성일
