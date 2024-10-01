@@ -1,15 +1,15 @@
 package com.hhplus.enrollment.lecture.application.info
 
-import com.hhplus.enrollment.lecture.domain.result.LectureResult
+import com.hhplus.enrollment.lecture.domain.data.LectureData
 
 data class LectureInfo(
     var lectureId: Long,
     var lectureName: String
 ) {
     companion object {
-        fun from(lectureResult: LectureResult) = LectureInfo(
-            lectureId = lectureResult.lectureId,
-            lectureName = lectureResult.lectureName
+        fun from(lectureData: LectureData) = LectureInfo(
+            lectureId = lectureData.lectureId,
+            lectureName = lectureData.lectureName
         )
     }
 }

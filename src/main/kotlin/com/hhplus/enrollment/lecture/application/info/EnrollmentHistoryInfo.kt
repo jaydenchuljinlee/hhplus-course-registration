@@ -1,6 +1,6 @@
 package com.hhplus.enrollment.lecture.application.info
 
-import com.hhplus.enrollment.lecture.domain.result.EnrollmentHistoryResult
+import com.hhplus.enrollment.lecture.domain.data.EnrollmentHistoryData
 
 data class EnrollmentHistoryInfo(
     var enrollmentHistoryId: Long,
@@ -13,7 +13,7 @@ data class EnrollmentHistoryInfo(
     var cancelYn: Boolean
 ) {
     companion object {
-        fun from(enrollmentHistory: EnrollmentHistoryResult): EnrollmentHistoryInfo {
+        fun from(enrollmentHistory: EnrollmentHistoryData): EnrollmentHistoryInfo {
             return EnrollmentHistoryInfo(
                 enrollmentHistoryId = enrollmentHistory.enrollmentHistoryId,
                 enrollmentId = enrollmentHistory.enrollmentId,
