@@ -3,20 +3,18 @@ package com.hhplus.enrollment.lecture.controller.response
 import com.hhplus.enrollment.lecture.application.info.EnrollmentInfo
 
 data class EnrollmentResponse(
+    var enrollmentId: Long,
     var lectureId: Long,
-    var lectureName: String,
-    var studentId: Long,
-    var studentNo: String,
-    var acceptYn: Boolean
+    var traineeId: Long,
+    var studentNo:String
 ) {
     companion object {
         fun from(enrollmentInfo: EnrollmentInfo): EnrollmentResponse {
             return EnrollmentResponse(
+                enrollmentInfo.enrollmentId,
                 enrollmentInfo.lectureId,
-                "",
-                enrollmentInfo.studentId,
-                "",
-                true
+                enrollmentInfo.traineeId,
+                enrollmentInfo.studentNo
             )
         }
     }
