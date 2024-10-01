@@ -1,6 +1,6 @@
 package com.hhplus.enrollment.lecture.domain.data
 
-import com.hhplus.enrollment.lecture.infrastructure.query.EnrollmentQuery
+import com.hhplus.enrollment.lecture.infrastructure.dto.EnrollmentCommandDto
 
 
 data class EnrollmentCommandData(
@@ -12,5 +12,5 @@ data class EnrollmentCommandData(
         require(traineeId >= 0) { "Trainee ID는 0 이상이어야 합니다."}
     }
 
-    fun toDto(): EnrollmentQuery = EnrollmentQuery(lectureId, traineeId)
+    fun toDto(): EnrollmentCommandDto = EnrollmentCommandDto(lectureId, traineeId)
 }

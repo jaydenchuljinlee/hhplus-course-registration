@@ -1,6 +1,6 @@
 package com.hhplus.enrollment.lecture.domain.data
 
-import com.hhplus.enrollment.lecture.infrastructure.query.EnrollmentHistoryQuery
+import com.hhplus.enrollment.lecture.infrastructure.dto.EnrollmentHistoryQueryDto
 
 data class EnrollmentHistoryQueryData(
     var userId: Long
@@ -9,5 +9,5 @@ data class EnrollmentHistoryQueryData(
         require(userId >= 0) { "User ID는 0 이상이어야 합니다."}
     }
 
-    fun toDto(): EnrollmentHistoryQuery = EnrollmentHistoryQuery(userId)
+    fun toDto(): EnrollmentHistoryQueryDto = EnrollmentHistoryQueryDto(userId)
 }

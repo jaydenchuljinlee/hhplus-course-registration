@@ -1,6 +1,6 @@
 package com.hhplus.enrollment.lecture.domain.data
 
-import com.hhplus.enrollment.lecture.infrastructure.query.LectureQuery
+import com.hhplus.enrollment.lecture.infrastructure.dto.LectureQueryDto
 
 data class LectureQueryData(
     var lectureId: Long
@@ -11,7 +11,7 @@ data class LectureQueryData(
         }
     }
 
-    fun toDto(): LectureQuery {
-        return LectureQuery(lectureId)
+    fun toDto(): LectureQueryDto {
+        return LectureQueryDto(lectureId)
     }
 }

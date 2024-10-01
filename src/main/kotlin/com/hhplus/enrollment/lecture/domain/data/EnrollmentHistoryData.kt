@@ -1,6 +1,6 @@
 package com.hhplus.enrollment.lecture.domain.data
 
-import com.hhplus.enrollment.lecture.infrastructure.projection.EnrollmentHistoryProjection
+import com.hhplus.enrollment.lecture.infrastructure.dto.EnrollmentHistoryDto
 
 data class EnrollmentHistoryData(
     var enrollmentHistoryId: Long,
@@ -13,15 +13,15 @@ data class EnrollmentHistoryData(
     var cancelYn: Boolean
 ) {
     companion object {
-        fun from(enrollmentHistoryProjection: EnrollmentHistoryProjection) = EnrollmentHistoryData(
-            enrollmentHistoryId = enrollmentHistoryProjection.enrollmentHistoryId,
-            enrollmentId = enrollmentHistoryProjection.enrollmentId,
-            lectureId = enrollmentHistoryProjection.lectureId,
-            lectureName = enrollmentHistoryProjection.lectureName,
-            studentId = enrollmentHistoryProjection.traineeId,
-            studentNo = enrollmentHistoryProjection.traineeNo,
-            acceptYn = enrollmentHistoryProjection.acceptYn,
-            cancelYn = enrollmentHistoryProjection.cancelYn
+        fun from(enrollmentHistoryDto: EnrollmentHistoryDto) = EnrollmentHistoryData(
+            enrollmentHistoryId = enrollmentHistoryDto.enrollmentHistoryId,
+            enrollmentId = enrollmentHistoryDto.enrollmentId,
+            lectureId = enrollmentHistoryDto.lectureId,
+            lectureName = enrollmentHistoryDto.lectureName,
+            studentId = enrollmentHistoryDto.traineeId,
+            studentNo = enrollmentHistoryDto.traineeNo,
+            acceptYn = enrollmentHistoryDto.acceptYn,
+            cancelYn = enrollmentHistoryDto.cancelYn
         )
     }
 }

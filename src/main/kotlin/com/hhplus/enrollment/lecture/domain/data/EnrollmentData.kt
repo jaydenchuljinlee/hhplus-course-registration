@@ -1,15 +1,15 @@
 package com.hhplus.enrollment.lecture.domain.data
 
-import com.hhplus.enrollment.lecture.infrastructure.projection.EnrollmentProjection
+import com.hhplus.enrollment.lecture.infrastructure.dto.EnrollmentDto
 
 data class EnrollmentData(
     var lectureId: Long,
     var studentId: Long
 ) {
     companion object {
-        fun from(enrollmentProjection: EnrollmentProjection) = EnrollmentData(
-            lectureId = enrollmentProjection.lectureId,
-            studentId = enrollmentProjection.traineeId
+        fun from(enrollmentDto: EnrollmentDto) = EnrollmentData(
+            lectureId = enrollmentDto.lectureId,
+            studentId = enrollmentDto.traineeId
         )
     }
 }
