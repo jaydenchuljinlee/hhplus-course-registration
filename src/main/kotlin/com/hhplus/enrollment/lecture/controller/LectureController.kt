@@ -17,20 +17,20 @@ class LectureController(
 ) {
     @PostMapping("enrollment")
     fun enrollment(
-        @RequestBody enrollmentRequest: EnrollmentRequest): EnrollmentResponse {
-        val result = enrollmentFacade.enroll(enrollmentRequest.toCommand())
+        @RequestBody request: EnrollmentRequest.Command): EnrollmentResponse {
+        val result = enrollmentFacade.enroll(request.toInfo())
         return EnrollmentResponse.from(result)
     }
 
     @GetMapping("enrollment/histories/{userId}")
-    fun getEnrollmentHistories(enrollmentHistoryRequest: EnrollmentHistoryRequest): List<EnrollmentHistoryResponse> {
-        val results = enrollmentFacade.getEnrollmentHistories(enrollmentHistoryRequest.toCommand())
+    fun getEnrollmentHistories(request: EnrollmentHistoryRequest.Query): List<EnrollmentHistoryResponse> {
+        val results = enrollmentFacade.getEnrollmentHistories(request.toInfo())
         return results.map { EnrollmentHistoryResponse.from(it) }
     }
 
     @GetMapping("list")
     fun getLectureList(): List<LectureResponse> {
-        val result = lectureFacade.getLectures()
-        return result.map { LectureResponse.from(it) }
+        val results = lectureFacade.getLectures()
+        return results.map { LectureResponse.from(it) }
     }
 }

@@ -1,7 +1,6 @@
 package com.hhplus.enrollment.lecture.controller.response
 
 import com.hhplus.enrollment.lecture.application.info.EnrollmentInfo
-import com.hhplus.enrollment.lecture.domain.result.EnrollmentResult
 
 data class EnrollmentResponse(
     var lectureId: Long,

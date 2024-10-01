@@ -1,19 +1,17 @@
 package com.hhplus.enrollment.lecture.controller.request
 
-import com.hhplus.enrollment.lecture.application.command.EnrollmentHistoryCommand
+import com.hhplus.enrollment.lecture.application.info.EnrollmentHistoryCommandInfo
 
-data class EnrollmentHistoryRequest(
-    var userId: Long
-) {
-    init {
-        require(userId >= 0) { "User ID를 0 이상이어야 합니다." }
-    }
+class EnrollmentHistoryRequest{
+    data class Query(
+        var traineeId: Long
+    ) {
+        init {
+            require(traineeId >= 0) { "수강자 ID를 올바르게 입력해주세요." }
+        }
 
-    companion object {
-
-    }
-
-    fun toCommand(): EnrollmentHistoryCommand {
-        return EnrollmentHistoryCommand(userId)
+        fun toInfo(): EnrollmentHistoryCommandInfo {
+            return EnrollmentHistoryCommandInfo(traineeId)
+        }
     }
 }
