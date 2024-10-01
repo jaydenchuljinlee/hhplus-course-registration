@@ -1,9 +1,9 @@
-package com.hhplus.enrollment.lecture.domain.param
+package com.hhplus.enrollment.lecture.domain.data
 
 import com.hhplus.enrollment.lecture.infrastructure.query.EnrollmentQuery
 
 
-data class EnrollmentParam(
+data class EnrollmentCommandData(
     var lectureId: Long,
     var traineeId: Long
 ) {
@@ -12,5 +12,5 @@ data class EnrollmentParam(
         require(traineeId >= 0) { "Trainee ID는 0 이상이어야 합니다."}
     }
 
-    fun toQuery(): EnrollmentQuery = EnrollmentQuery(lectureId, traineeId)
+    fun toDto(): EnrollmentQuery = EnrollmentQuery(lectureId, traineeId)
 }

@@ -1,22 +1,21 @@
 package com.hhplus.enrollment.lecture.domain
 
-import com.hhplus.enrollment.lecture.domain.param.LectureParam
-import com.hhplus.enrollment.lecture.domain.result.LectureResult
+import com.hhplus.enrollment.lecture.domain.data.LectureQueryData
+import com.hhplus.enrollment.lecture.domain.data.LectureData
 import com.hhplus.enrollment.lecture.infrastructure.LectureRepository
-import com.hhplus.enrollment.lecture.infrastructure.query.LectureQuery
 import org.springframework.stereotype.Service
 
 @Service
 class LectureServiceImpl(
     private val lectureRepository: LectureRepository
 ): LectureService {
-    override fun getLecture(param: LectureParam): LectureResult {
-        val result = lectureRepository.getLecture(LectureQuery.of(param.lectureId))
-        return LectureResult.from(result)
+    override fun getLecture(query: LectureQueryData): LectureData {
+        val result = lectureRepository.getLecture(query.toDto())
+        return LectureData.from(result)
     }
 
-    override fun getLectures(): List<LectureResult> {
+    override fun getLectures(): List<LectureData> {
         val result = lectureRepository.getLectures()
-        return result.map { LectureResult.from(it) }
+        return result.map { LectureData.from(it) }
     }
 }

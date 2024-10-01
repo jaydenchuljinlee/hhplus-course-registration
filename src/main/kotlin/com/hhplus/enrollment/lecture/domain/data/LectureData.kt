@@ -1,14 +1,13 @@
-package com.hhplus.enrollment.lecture.domain.result
+package com.hhplus.enrollment.lecture.domain.data
 
 import com.hhplus.enrollment.lecture.infrastructure.projection.LectureProjection
-import com.hhplus.enrollment.lecture.infrastructure.query.LectureQuery
 
-data class LectureResult(
+data class LectureData(
     var lectureId: Long,
     var lectureName: String
 ) {
     companion object {
-        fun from(lectureProjection: LectureProjection): LectureResult = LectureResult(
+        fun from(lectureProjection: LectureProjection): LectureData = LectureData(
             lectureId = lectureProjection.lectureId,
             lectureName = lectureProjection.lectureName
         )

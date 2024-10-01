@@ -1,11 +1,11 @@
 package com.hhplus.enrollment.lecture.domain
 
-import com.hhplus.enrollment.lecture.domain.param.EnrollmentHistoryParam
-import com.hhplus.enrollment.lecture.domain.param.EnrollmentParam
-import com.hhplus.enrollment.lecture.domain.result.EnrollmentResult
-import com.hhplus.enrollment.lecture.domain.result.EnrollmentHistoryResult
+import com.hhplus.enrollment.lecture.domain.data.EnrollmentHistoryQueryData
+import com.hhplus.enrollment.lecture.domain.data.EnrollmentCommandData
+import com.hhplus.enrollment.lecture.domain.data.EnrollmentData
+import com.hhplus.enrollment.lecture.domain.data.EnrollmentHistoryData
 
 interface EnrollmentService {
-    fun enroll(param: EnrollmentParam): EnrollmentResult
-    fun getEnrollmentHistories(param: EnrollmentHistoryParam): List<EnrollmentHistoryResult>
+    fun enroll(query: EnrollmentCommandData): EnrollmentData
+    fun getEnrollmentHistories(query: EnrollmentHistoryQueryData): List<EnrollmentHistoryData>
 }

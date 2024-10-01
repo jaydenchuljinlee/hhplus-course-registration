@@ -1,9 +1,9 @@
 package com.hhplus.enrollment.lecture.domain
 
-import com.hhplus.enrollment.lecture.domain.param.LectureParam
-import com.hhplus.enrollment.lecture.domain.result.LectureResult
+import com.hhplus.enrollment.lecture.domain.data.LectureQueryData
+import com.hhplus.enrollment.lecture.domain.data.LectureData
 
 interface LectureService {
-    fun getLecture(param: LectureParam): LectureResult  // Optional<LectureResult> 로 변경? Optional<Lecture> 로 변경?
-    fun getLectures(): List<LectureResult>
+    fun getLecture(query: LectureQueryData): LectureData  // Optional<LectureResult> 로 변경? Optional<Lecture> 로 변경?
+    fun getLectures(): List<LectureData>
 }
