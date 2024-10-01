@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull
 
 @Table(name = "enrollment")
 @Entity
-data class EnrollmentTable(
+data class EnrollmentEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
     @NotNull

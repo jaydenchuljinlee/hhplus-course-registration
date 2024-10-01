@@ -4,7 +4,7 @@ import jakarta.persistence.*
 
 @Table(name = "enrollment_history")
 @Entity
-data class EnrollmentHistoryTable(
+data class EnrollmentHistoryEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0L,
     @Column(name = "enrollment_id", nullable = false)

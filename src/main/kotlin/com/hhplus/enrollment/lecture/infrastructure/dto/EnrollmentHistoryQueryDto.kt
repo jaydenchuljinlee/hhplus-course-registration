@@ -1,6 +1,6 @@
-package com.hhplus.enrollment.lecture.infrastructure.query
+package com.hhplus.enrollment.lecture.infrastructure.dto
 
-data class EnrollmentHistoryQuery(
+data class EnrollmentHistoryQueryDto(
     var userId: Long
 ) {
     init {

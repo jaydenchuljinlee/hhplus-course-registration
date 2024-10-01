@@ -1,16 +1,16 @@
-package com.hhplus.enrollment.lecture.infrastructure.query
+package com.hhplus.enrollment.lecture.infrastructure.dto
 
-import com.hhplus.enrollment.lecture.infrastructure.jpa.entity.EnrollmentHistoryTable
+import com.hhplus.enrollment.lecture.infrastructure.jpa.entity.EnrollmentHistoryEntity
 
-data class EnrollmentHistoryInsertionQuery(
+data class EnrollmentHistoryCommandDto(
     var enrollmentId: Long,
     var lectureId: Long,
     var traineeId: Long,
     var acceptYn: Boolean,
     var cancelYn: Boolean
 ) {
-    fun toTable(): EnrollmentHistoryTable {
-        return EnrollmentHistoryTable(
+    fun toEntity(): EnrollmentHistoryEntity {
+        return EnrollmentHistoryEntity(
             enrollmentId = enrollmentId,
             lectureId = lectureId,
             traineeId = traineeId,

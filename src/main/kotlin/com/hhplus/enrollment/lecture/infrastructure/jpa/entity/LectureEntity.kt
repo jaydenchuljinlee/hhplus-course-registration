@@ -4,7 +4,7 @@ import jakarta.persistence.*
 
 @Table(name = "lecture")
 @Entity
-data class LectureTable(
+data class LectureEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long,
     @Column(nullable = false, name = "lecture_name")

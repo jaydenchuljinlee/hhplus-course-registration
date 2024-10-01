@@ -1,10 +1,10 @@
 package com.hhplus.enrollment.lecture.infrastructure
 
-import com.hhplus.enrollment.lecture.infrastructure.projection.EnrollmentHistoryProjection
-import com.hhplus.enrollment.lecture.infrastructure.query.EnrollmentHistoryInsertionQuery
-import com.hhplus.enrollment.lecture.infrastructure.query.EnrollmentHistoryQuery
+import com.hhplus.enrollment.lecture.infrastructure.dto.EnrollmentHistoryDto
+import com.hhplus.enrollment.lecture.infrastructure.dto.EnrollmentHistoryCommandDto
+import com.hhplus.enrollment.lecture.infrastructure.dto.EnrollmentHistoryQueryDto
 
 interface EnrollmentHistoryRepository {
-    fun insert(query: EnrollmentHistoryInsertionQuery): EnrollmentHistoryProjection
-    fun getEnrollmentHistories(query: EnrollmentHistoryQuery): List<EnrollmentHistoryProjection>
+    fun insert(command: EnrollmentHistoryCommandDto): EnrollmentHistoryDto
+    fun getEnrollmentHistories(query: EnrollmentHistoryQueryDto): List<EnrollmentHistoryDto>
 }

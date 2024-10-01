@@ -1,8 +1,8 @@
 package com.hhplus.enrollment.lecture.infrastructure
 
-import com.hhplus.enrollment.lecture.infrastructure.projection.EnrollmentProjection
-import com.hhplus.enrollment.lecture.infrastructure.query.EnrollmentQuery
+import com.hhplus.enrollment.lecture.infrastructure.dto.EnrollmentDto
+import com.hhplus.enrollment.lecture.infrastructure.dto.EnrollmentCommandDto
 
 interface EnrollmentRepository {
-    fun enroll(query: EnrollmentQuery): EnrollmentProjection
+    fun enroll(command: EnrollmentCommandDto): EnrollmentDto
 }
