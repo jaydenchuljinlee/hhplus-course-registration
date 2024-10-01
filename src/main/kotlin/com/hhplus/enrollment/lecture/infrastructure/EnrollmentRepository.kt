@@ -5,4 +5,5 @@ import com.hhplus.enrollment.lecture.infrastructure.dto.EnrollmentCommandDto
 
 interface EnrollmentRepository {
     fun enroll(command: EnrollmentCommandDto): EnrollmentDto
+    fun countEnrollmentByLectureId(lectureId: Long): Long
 }

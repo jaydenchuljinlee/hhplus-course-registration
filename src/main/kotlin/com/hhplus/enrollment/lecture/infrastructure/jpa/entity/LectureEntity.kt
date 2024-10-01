@@ -1,6 +1,7 @@
 package com.hhplus.enrollment.lecture.infrastructure.jpa.entity
 
 import jakarta.persistence.*
+import java.time.LocalDateTime
 
 @Table(name = "lecture")
 @Entity
@@ -16,5 +17,9 @@ data class LectureEntity(
     @Column(nullable = false, name = "capacity")
     var capacity: Int = 0,
     @Column(nullable = false, name = "open_yn")
-    var openYn: Char = 'Y'
+    var openYn: Char = 'Y',
+    @Column(nullable = false, name = "apply_start_dt")
+    var applyStartDt: LocalDateTime,
+    @Column(nullable = false, name = "apply_end_dt")
+    var applyEndDt: LocalDateTime
 )

@@ -13,4 +13,8 @@ class EnrollmentRepositoryImpl(
         val result = jpaRepository.save(command.toEntity())
         return EnrollmentDto.from(result)
     }
+
+    override fun countEnrollmentByLectureId(lectureId: Long): Long {
+        return jpaRepository.countByLectureIdAndAcceptYn(lectureId)
+    }
 }

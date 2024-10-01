@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface EnrollmentJpaRepository: JpaRepository<EnrollmentEntity, Long> {
+    fun countByLectureIdAndAcceptYn(lectureId: Long, acceptYn: Char? = 'Y'): Long
 }
