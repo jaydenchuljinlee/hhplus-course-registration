@@ -1,8 +1,8 @@
 package com.hhplus.enrollment.lecture.controller.request
 
-import com.hhplus.enrollment.lecture.application.info.EnrollmentCommandInfo
+import com.hhplus.enrollment.lecture.application.info.LectureCommandInfo
 
-class EnrollmentRequest{
+class LectureRequest{
     data class Command(
         var lectureId: Long,
         var traineeId: Long,
@@ -12,8 +12,8 @@ class EnrollmentRequest{
             require(traineeId >= 0) { "수강자 ID를 올바르게 입력해주세요." }
         }
 
-        fun toInfo(): EnrollmentCommandInfo {
-            return EnrollmentCommandInfo.of(lectureId, traineeId)
+        fun toInfo(): LectureCommandInfo {
+            return LectureCommandInfo.of(lectureId, traineeId)
         }
     }
 }

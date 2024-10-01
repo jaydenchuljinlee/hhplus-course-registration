@@ -1,15 +1,22 @@
 package com.hhplus.enrollment.lecture.application.info
 
 import com.hhplus.enrollment.lecture.domain.data.LectureData
+import java.time.LocalDateTime
 
 data class LectureInfo(
-    var lectureId: Long,
-    var lectureName: String
+    var id: Long,
+    var tutorId: Long,
+    var capacity: Int,
+    var date: LocalDateTime,
+    var openYn: Char,
 ) {
     companion object {
-        fun from(lectureData: LectureData) = LectureInfo(
-            lectureId = lectureData.lectureId,
-            lectureName = lectureData.lectureName
+        fun from(data: LectureData): LectureInfo = LectureInfo(
+            id = data.id,
+            tutorId = data.tutorId,
+            capacity = data.capacity,
+            date = data.date,
+            openYn = data.openYn,
         )
     }
 }

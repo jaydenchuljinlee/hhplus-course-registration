@@ -18,4 +18,9 @@ class LectureRepositoryImpl(
         val results = lectureJpaRepository.findAll()
         return results.map { LectureDto.from(it) }
     }
+
+    override fun enroll(command: LectureDto): LectureDto {
+        lectureJpaRepository.save(command.toEntity())
+        return command
+    }
 }

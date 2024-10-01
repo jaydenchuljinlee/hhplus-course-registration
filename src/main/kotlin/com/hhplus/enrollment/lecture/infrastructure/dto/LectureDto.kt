@@ -4,21 +4,40 @@ import com.hhplus.enrollment.lecture.infrastructure.jpa.entity.LectureEntity
 import java.time.LocalDateTime
 
 data class LectureDto(
-    var lectureId: Long,
-    var lectureName: String,
+    var id: Long,
+    var tutorId: Long,
     var capacity: Int,
-    var applyStartDt: LocalDateTime,
-    var applyEndDt: LocalDateTime
+    var date: LocalDateTime,
+    var openYn: Char,
+    var createdDt: LocalDateTime,
+    var updatedDt: LocalDateTime,
+    var useYn: Char,
 ) {
     companion object {
-        fun from(lectureEntity: LectureEntity): LectureDto {
+        fun from(entity: LectureEntity): LectureDto {
             return LectureDto(
-                lectureId = lectureEntity.id,
-                lectureName = lectureEntity.lectureName,
-                capacity = lectureEntity.capacity,
-                applyStartDt = lectureEntity.applyStartDt,
-                applyEndDt = lectureEntity.applyEndDt
+                id = entity.id,
+                tutorId = entity.tutorId,
+                capacity = entity.capacity,
+                date = entity.date,
+                openYn = entity.openYn,
+                createdDt = entity.createdDt,
+                updatedDt = entity.updatedDt,
+                useYn = entity.useYn,
             )
         }
+    }
+
+    fun toEntity(): LectureEntity {
+        return LectureEntity(
+            id = id,
+            tutorId = tutorId,
+            capacity = capacity,
+            date = date,
+            openYn = openYn,
+            createdDt = createdDt,
+            updatedDt = updatedDt,
+            useYn = useYn,
+        )
     }
 }

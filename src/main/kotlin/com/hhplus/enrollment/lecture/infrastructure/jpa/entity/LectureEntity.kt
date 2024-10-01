@@ -8,18 +8,19 @@ import java.time.LocalDateTime
 data class LectureEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long,
-    @Column(nullable = false, name = "lecture_name")
-    var lectureName: String,
-    @Column(nullable = true, name = "description")
-    var description: String = "",
     @Column(nullable = false, name = "tutor_id")
     var tutorId: Long,
     @Column(nullable = false, name = "capacity")
     var capacity: Int = 0,
+    @Column(nullable = false, name = "date")
+    var date: LocalDateTime,
     @Column(nullable = false, name = "open_yn")
     var openYn: Char = 'Y',
-    @Column(nullable = false, name = "apply_start_dt")
-    var applyStartDt: LocalDateTime,
-    @Column(nullable = false, name = "apply_end_dt")
-    var applyEndDt: LocalDateTime
+
+    @Column(nullable = false, name = "created_dt")
+    var createdDt: LocalDateTime,
+    @Column(nullable = false, name = "updated_at")
+    var updatedDt: LocalDateTime,
+    @Column(nullable = false, name = "use_yn")
+    var useYn: Char = 'Y',
 )
