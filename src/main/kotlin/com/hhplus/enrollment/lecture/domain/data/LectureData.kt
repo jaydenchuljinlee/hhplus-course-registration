@@ -1,5 +1,7 @@
 package com.hhplus.enrollment.lecture.domain.data
 
+import com.hhplus.enrollment.lecture.exception.LectureCapacityExceededException
+import com.hhplus.enrollment.lecture.exception.LectureInPastException
 import com.hhplus.enrollment.lecture.infrastructure.dto.LectureDto
 import java.time.LocalDateTime
 
@@ -10,8 +12,8 @@ data class LectureData(
     var date: LocalDateTime,
     var openYn: Char,
 
-    var createdDt: LocalDateTime,
-    var updatedDt: LocalDateTime,
+    var createdAt: LocalDateTime,
+    var updatedAt: LocalDateTime,
     var useYn: Char,
 ) {
     companion object {
@@ -21,21 +23,25 @@ data class LectureData(
             capacity = dto.capacity,
             date = dto.date,
             openYn = dto.openYn,
-            createdDt = dto.createdDt,
-            updatedDt = dto.updatedDt,
+            createdAt = dto.createdAt,
+            updatedAt = dto.updatedAt,
             useYn = dto.useYn,
         )
     }
 
-    fun decrease() {
-        require(capacity.minus(1) >= 0) { throw RuntimeException("강의 인원이 초과되었습니다.") }
+    fun enroll() {
+        validateDate() // 날짜 유효성 검사
+        decrease() // 수강 인원 차감
     }
 
-    // Deprecated. 날짜 별로 특강이 존재하기 때문에 lecture_id만으로 충분히 유효성 검사가 가능하고, 날짜에 대한 유효성 검사가 필요가 없다.
-    fun validateDate(now: LocalDateTime) {
-        require(now.isAfter(date) && now.isBefore(date)) {
-            throw RuntimeException("강의 수강 기간이 아닙니다.")
-        }
+    fun validateDate() {
+        val now = LocalDateTime.now()
+        require(now.isBefore(date)) { throw LectureInPastException() }
+    }
+
+    fun decrease() {
+        require(capacity.minus(1) >= 0) { throw LectureCapacityExceededException() }
+        capacity = capacity.minus(1)
     }
 
     fun toDto(): LectureDto {
@@ -45,8 +51,8 @@ data class LectureData(
             capacity = capacity,
             date = date,
             openYn = openYn,
-            createdDt = createdDt,
-            updatedDt = updatedDt,
+            createdAt = createdAt,
+            updatedAt = updatedAt,
             useYn = useYn,
         )
     }

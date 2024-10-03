@@ -1,10 +1,10 @@
-package com.hhplus.enrollment.lecture.application
+package com.hhplus.enrollment.lecture.usecase
 
-import com.hhplus.enrollment.lecture.application.info.*
+import com.hhplus.enrollment.lecture.usecase.info.*
 
 interface LectureFacade {
     fun enroll(command: LectureCommandInfo): LectureInfo
     fun getLectureHistories(command: LectureHistoryCommandInfo): List<LectureHistoryInfo>
 
-    fun getLectures(): List<LectureInfo>
+    fun getGroupedAvailableLectures(): List<LectureDetailInfo>
 }

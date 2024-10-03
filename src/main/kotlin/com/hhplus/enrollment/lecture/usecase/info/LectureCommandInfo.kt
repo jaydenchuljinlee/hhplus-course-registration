@@ -1,4 +1,4 @@
-package com.hhplus.enrollment.lecture.application.info
+package com.hhplus.enrollment.lecture.usecase.info
 
 import com.hhplus.enrollment.lecture.domain.data.LectureCommandData
 

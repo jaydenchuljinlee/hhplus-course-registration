@@ -19,20 +19,21 @@ class LectureServiceImpl(
         return LectureData.from(result)
     }
 
-    override fun getLectures(): List<LectureData> {
-        val result = lectureRepository.getLectures()
+    override fun getAvailableLectures(): List<LectureData> {
+        val result = lectureRepository.getAvailableLectures()
         return result.map { LectureData.from(it) }
     }
 
     @Transactional
     override fun enroll(query: LectureCommandData): LectureData {
-        validator.validate(query)
+        validator.validate(query) // 수강자 정보, 신청 이력에 대한 유효성 검사
 
-        val lecture = getLecture(LectureQueryData.of(query.lectureId))
-        lecture.decrease()
+        val lecture = getLecture(LectureQueryData.of(query.lectureId)) // 강의 정보 조회. 내부에서 유효성 검사
+        lecture.enroll() // 수강 신청. 내부에서 유효성 검사
 
-        lectureRepository.enroll(lecture.toDto())
+        lectureRepository.enroll(lecture.toDto()) // 참감 된 수강 정보 저장
 
+        // 강의 이력 저장
         val historyCommand = LectureHistoryCommandDto.of(query.lectureId, query.traineeId)
         lectureHistoryRepository.insert(historyCommand)
         return lecture

@@ -8,5 +8,4 @@ data class LectureCommandDto(
     var traineeId: Long,
     var capacity: Long,
     var data: LocalDateTime,
-
 )

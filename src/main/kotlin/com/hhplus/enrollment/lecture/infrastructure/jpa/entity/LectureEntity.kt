@@ -1,5 +1,6 @@
 package com.hhplus.enrollment.lecture.infrastructure.jpa.entity
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -17,10 +18,12 @@ data class LectureEntity(
     @Column(nullable = false, name = "open_yn")
     var openYn: Char = 'Y',
 
-    @Column(nullable = false, name = "created_dt")
-    var createdDt: LocalDateTime,
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(nullable = false, name = "created_at")
+    var createdAt: LocalDateTime,
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = false, name = "updated_at")
-    var updatedDt: LocalDateTime,
+    var updatedAt: LocalDateTime,
     @Column(nullable = false, name = "use_yn")
     var useYn: Char = 'Y',
 )

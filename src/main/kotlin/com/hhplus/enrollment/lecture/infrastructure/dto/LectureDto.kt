@@ -9,8 +9,8 @@ data class LectureDto(
     var capacity: Int,
     var date: LocalDateTime,
     var openYn: Char,
-    var createdDt: LocalDateTime,
-    var updatedDt: LocalDateTime,
+    var createdAt: LocalDateTime,
+    var updatedAt: LocalDateTime,
     var useYn: Char,
 ) {
     companion object {
@@ -21,8 +21,8 @@ data class LectureDto(
                 capacity = entity.capacity,
                 date = entity.date,
                 openYn = entity.openYn,
-                createdDt = entity.createdDt,
-                updatedDt = entity.updatedDt,
+                createdAt = entity.createdAt,
+                updatedAt = entity.updatedAt,
                 useYn = entity.useYn,
             )
         }
@@ -35,8 +35,8 @@ data class LectureDto(
             capacity = capacity,
             date = date,
             openYn = openYn,
-            createdDt = createdDt,
-            updatedDt = updatedDt,
+            createdAt = createdAt,
+            updatedAt = updatedAt,
             useYn = useYn,
         )
     }
