@@ -22,7 +22,7 @@ class LectureHistoryRepositoryImpl(
     }
 
     override fun getEnrolledHistory(query: EnrolledLectureHistoryQueryDto): LectureHistoryDto? {
-        val result = jpaRepository.findTopByTraineeIdAndLectureIdOrderByCreatedAtDesc(query.traineeId, query.lectureId)
+        val result = jpaRepository.findTopByTraineeIdAndLectureIdAndCancelYn(query.traineeId, query.lectureId)
         return if (result.isPresent) {
             LectureHistoryDto.from(result.get())
         } else null
