@@ -1,8 +1,8 @@
 package com.hhplus.enrollment.user.infrastructure
 
-import com.hhplus.enrollment.user.infrastructure.projection.TraineeProjection
-import com.hhplus.enrollment.user.infrastructure.query.TraineeQuery
+import com.hhplus.enrollment.user.infrastructure.dto.TraineeDto
+import com.hhplus.enrollment.user.infrastructure.dto.TraineeQueryDto
 
 interface TraineeRepository {
-    fun getTrainees(query: TraineeQuery): TraineeProjection
+    fun getTrainees(query: TraineeQueryDto): TraineeDto
 }

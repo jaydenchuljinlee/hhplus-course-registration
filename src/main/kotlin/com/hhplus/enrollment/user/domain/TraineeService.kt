@@ -1,8 +1,8 @@
 package com.hhplus.enrollment.user.domain
 
-import com.hhplus.enrollment.user.domain.param.TraineeParam
-import com.hhplus.enrollment.user.domain.result.TraineeResult
+import com.hhplus.enrollment.user.domain.data.TraineeQueryData
+import com.hhplus.enrollment.user.domain.data.TraineeData
 
 interface TraineeService {
-    fun getTrainee(param: TraineeParam): TraineeResult
+    fun getTrainee(param: TraineeQueryData): TraineeData
 }

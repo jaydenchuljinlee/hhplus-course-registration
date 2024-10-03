@@ -1,18 +1,16 @@
-package com.hhplus.enrollment.user.domain.result
+package com.hhplus.enrollment.user.domain.data
 
-import com.hhplus.enrollment.user.infrastructure.projection.TraineeProjection
+import com.hhplus.enrollment.user.infrastructure.dto.TraineeDto
 
-data class TraineeResult(
+data class TraineeData(
     var traineeId: Long,
-    var studentNumber: String,
     var name: String,
     var phoneNumber: String,
     var email: String
 ) {
     companion object {
-        fun from(projection: TraineeProjection) = TraineeResult(
+        fun from(projection: TraineeDto) = TraineeData(
             traineeId = projection.traineeId,
-            studentNumber = projection.studentNumber,
             name = projection.name,
             phoneNumber = projection.phoneNumber,
             email = projection.email
