@@ -1,4 +1,4 @@
-package com.hhplus.enrollment.lecutre.domain.stub
+package com.hhplus.enrollment.lecutre.domain.fake
 
 import com.hhplus.enrollment.lecture.infrastructure.LectureHistoryRepository
 import com.hhplus.enrollment.lecture.infrastructure.dto.EnrolledLectureHistoryQueryDto
@@ -6,18 +6,18 @@ import com.hhplus.enrollment.lecture.infrastructure.dto.LectureHistoryCommandDto
 import com.hhplus.enrollment.lecture.infrastructure.dto.LectureHistoryDto
 import com.hhplus.enrollment.lecture.infrastructure.dto.LectureHistoryQueryDto
 import com.hhplus.enrollment.lecture.infrastructure.jpa.entity.LectureHistoryEntity
-import java.time.LocalDateTime
 
-class StubLectureHistoryRepository: LectureHistoryRepository {
+class FakeLectureHistoryRepository: LectureHistoryRepository {
     private val historyies = mutableListOf<LectureHistoryEntity>()
 
     init {
-        // Initialize with some sample data for testing
-        historyies.add(LectureHistoryEntity(2L, 2L, 1L, 'Y', 'N'))
-        historyies.add(LectureHistoryEntity(1L, 1L, 1L, 'Y', 'Y', createdAt = LocalDateTime.of(2024, 9, 30, 1,1,1)))
+        val TRAINEE_1_HISTORY = LectureHistoryEntity(2L, 1L, 1L, 'Y', 'N')
+        val TRAINEE_1_HISTORY_CANCEL = LectureHistoryEntity(2L, 1L, 1L, 'Y', 'Y')
+        val TRAINEE_2_HISTORY = LectureHistoryEntity(3L, 2L, 1L, 'Y', 'N')
 
-        historyies.add(LectureHistoryEntity(3L, 2L, 3L, 'Y', 'N'))
-        historyies.add(LectureHistoryEntity(4L, 3L, 2L, 'Y', 'N'))
+        historyies.add(TRAINEE_1_HISTORY)
+        historyies.add(TRAINEE_1_HISTORY_CANCEL)
+        historyies.add(TRAINEE_2_HISTORY)
     }
 
     override fun insert(command: LectureHistoryCommandDto): LectureHistoryDto {
@@ -34,7 +34,7 @@ class StubLectureHistoryRepository: LectureHistoryRepository {
 
     override fun getEnrolledHistory(query: EnrolledLectureHistoryQueryDto): LectureHistoryDto? {
         val results = historyies
-            .filter { it.traineeId == query.traineeId && it.lectureId == query.traineeId }
+            .filter { it.traineeId == query.traineeId && it.lectureId == query.lectureId }
             .sortedBy { it.createdAt }
             .map { LectureHistoryDto.from(it) }.firstOrNull()
 
