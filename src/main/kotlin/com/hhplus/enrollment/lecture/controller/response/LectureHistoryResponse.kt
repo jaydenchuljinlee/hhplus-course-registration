@@ -1,6 +1,6 @@
 package com.hhplus.enrollment.lecture.controller.response
 
-import com.hhplus.enrollment.lecture.application.info.LectureHistoryInfo
+import com.hhplus.enrollment.lecture.usecase.info.LectureHistoryInfo
 
 data class LectureHistoryResponse(
     var id: Long,

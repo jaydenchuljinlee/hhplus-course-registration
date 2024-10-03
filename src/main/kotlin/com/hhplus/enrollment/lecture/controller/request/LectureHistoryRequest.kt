@@ -1,6 +1,6 @@
 package com.hhplus.enrollment.lecture.controller.request
 
-import com.hhplus.enrollment.lecture.application.info.LectureHistoryCommandInfo
+import com.hhplus.enrollment.lecture.usecase.info.LectureHistoryCommandInfo
 
 class LectureHistoryRequest{
     data class Query(

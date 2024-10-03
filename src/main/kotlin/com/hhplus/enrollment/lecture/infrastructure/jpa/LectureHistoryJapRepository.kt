@@ -8,6 +8,5 @@ import java.util.*
 @Repository
 interface LectureHistoryJapRepository: JpaRepository<LectureHistoryEntity, Long> {
     fun findAllByTraineeId(traineeId: Long): List<LectureHistoryEntity>
-
     fun findTopByTraineeIdAndLectureIdOrderByCreatedAtDesc(traineeId: Long, lectureId: Long): Optional<LectureHistoryEntity>
 }
