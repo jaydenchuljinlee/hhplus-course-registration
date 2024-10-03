@@ -3,6 +3,7 @@ package com.hhplus.enrollment.lecture.domain.data
 import com.hhplus.enrollment.lecture.exception.LectureCapacityExceededException
 import com.hhplus.enrollment.lecture.exception.LectureInPastException
 import com.hhplus.enrollment.lecture.infrastructure.dto.LectureDto
+import com.hhplus.enrollment.lecture.infrastructure.jpa.entity.LectureEntity
 import java.time.LocalDateTime
 
 data class LectureData(
@@ -17,7 +18,7 @@ data class LectureData(
     var useYn: Char,
 ) {
     companion object {
-        fun from(dto: LectureDto): LectureData = LectureData(
+        fun from(dto: LectureEntity): LectureData = LectureData(
             id = dto.id,
             tutorId = dto.tutorId,
             capacity = dto.capacity,
@@ -27,21 +28,6 @@ data class LectureData(
             updatedAt = dto.updatedAt,
             useYn = dto.useYn,
         )
-    }
-
-    fun enroll() {
-        validateDate() // 날짜 유효성 검사
-        decrease() // 수강 인원 차감
-    }
-
-    fun validateDate() {
-        val now = LocalDateTime.now()
-        require(now.isBefore(date)) { throw LectureInPastException() }
-    }
-
-    fun decrease() {
-        require(capacity.minus(1) >= 0) { throw LectureCapacityExceededException() }
-        capacity = capacity.minus(1)
     }
 
     fun toDto(): LectureDto {

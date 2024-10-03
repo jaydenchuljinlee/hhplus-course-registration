@@ -1,6 +1,8 @@
 package com.hhplus.enrollment.lecture.infrastructure.jpa.entity
 
 import com.fasterxml.jackson.annotation.JsonFormat
+import com.hhplus.enrollment.lecture.exception.LectureCapacityExceededException
+import com.hhplus.enrollment.lecture.exception.LectureInPastException
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -26,4 +28,19 @@ data class LectureEntity(
     var updatedAt: LocalDateTime,
     @Column(nullable = false, name = "use_yn")
     var useYn: Char = 'Y',
-)
+) {
+    fun enroll() {
+        validateDate() // 날짜 유효성 검사
+        decrease() // 수강 인원 차감
+    }
+
+    fun validateDate() {
+        val now = LocalDateTime.now()
+        require(now.isBefore(date)) { throw LectureInPastException() }
+    }
+
+    fun decrease() {
+        require(capacity.minus(1) >= 0) { throw LectureCapacityExceededException() }
+        capacity = capacity.minus(1)
+    }
+}
