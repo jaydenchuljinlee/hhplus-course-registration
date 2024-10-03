@@ -9,7 +9,7 @@ spring:
       mode: always
 
   jpa:
-    defer-datasource-initialization: true
+    defer-datasource-initialization: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     # show-sql: true
