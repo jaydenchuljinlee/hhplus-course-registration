@@ -13,7 +13,7 @@ CREATE TABLE tutor (
     -- 베이스 필드
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 생성일
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 수정일
-    active_yn CHAR(1) DEFAULT 'Y' NOT NULL -- 사용 여부 (Y/N)
+    use_yn CHAR(1) DEFAULT 'Y' NOT NULL -- 사용 여부 (Y/N)
 );
 
 -- 수강자 관련 테이블
@@ -26,7 +26,7 @@ CREATE TABLE trainee (
     -- 베이스 필드
      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 생성일
      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 수정일
-     active_yn CHAR(1) DEFAULT 'Y' NOT NULL -- 사용 여부 (Y/N)
+     use_yn CHAR(1) DEFAULT 'Y' NOT NULL -- 사용 여부 (Y/N)
 );
 
 ----------------------------------------------------------------
@@ -44,7 +44,7 @@ CREATE TABLE lecture (
     -- 베이스 필드
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 생성일
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 수정일
-    active_yn CHAR(1) DEFAULT 'Y' NOT NULL -- 사용 여부 (Y/N)
+    use_yn CHAR(1) DEFAULT 'Y' NOT NULL -- 사용 여부 (Y/N)
 );
 
 -- 강의 신청 이력 관련 테이블
@@ -58,5 +58,5 @@ CREATE TABLE lecture_history (
     -- 베이스 필드
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 생성일
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 수정일
-    active_yn CHAR(1) DEFAULT 'Y' NOT NULL -- 사용 여부 (Y/N)
+    use_yn CHAR(1) DEFAULT 'Y' NOT NULL -- 사용 여부 (Y/N)
 );
