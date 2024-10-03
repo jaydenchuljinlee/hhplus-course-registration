@@ -28,22 +28,22 @@ class FakeLectureRepository: LectureRepository {
         table[4L] = LECTURE_4
     }
 
-    override fun getLecture(query: LectureQueryDto): LectureDto {
+    override fun getLecture(query: LectureQueryDto): LectureEntity {
         val result = table[query.lectureId] ?: throw LectureNotFoundException()
-        return LectureDto.from(result)
+        return result
     }
 
-    override fun getAvailableLectures(): List<LectureDto> {
+    override fun getAvailableLectures(): List<LectureEntity> {
         val results = table.values
-        return results.map { LectureDto.from(it) }
+        return results.toList()
     }
 
-    override fun enroll(command: LectureDto): LectureDto {
+    override fun enroll(command: LectureEntity): LectureEntity {
         val lecture = table[command.id] ?: throw LectureNotFoundException()
 
-        lecture.capacity -= 1
+        table[command.id] = lecture
 
-        return LectureDto.from(lecture)
+        return lecture
     }
 
 }
