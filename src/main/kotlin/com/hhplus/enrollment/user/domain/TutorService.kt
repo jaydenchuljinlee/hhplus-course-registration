@@ -1,8 +1,9 @@
 package com.hhplus.enrollment.user.domain
 
-import com.hhplus.enrollment.user.domain.param.TutorParam
-import com.hhplus.enrollment.user.domain.result.TutorResult
+import com.hhplus.enrollment.user.domain.data.TutorQueryData
+import com.hhplus.enrollment.user.domain.data.TutorData
 
 interface TutorService {
-    fun getTutor(tutorParam: TutorParam): TutorResult
+    fun getTutor(tutorQueryData: TutorQueryData): TutorData
+    fun getTutors(paramList: List<TutorQueryData>): List<TutorData>
 }

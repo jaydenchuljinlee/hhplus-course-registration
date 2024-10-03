@@ -1,8 +1,9 @@
 package com.hhplus.enrollment.user.infrastructure
 
-import com.hhplus.enrollment.user.infrastructure.projection.TutorProjection
-import com.hhplus.enrollment.user.infrastructure.query.TutorQuery
+import com.hhplus.enrollment.user.infrastructure.dto.TutorDto
+import com.hhplus.enrollment.user.infrastructure.dto.TutorQueryDto
 
 interface TutorRepository {
-    fun getTutor(query: TutorQuery): TutorProjection
+    fun getTutor(query: TutorQueryDto): TutorDto
+    fun getTutors(queryList: List<TutorQueryDto>): List<TutorDto>
 }
