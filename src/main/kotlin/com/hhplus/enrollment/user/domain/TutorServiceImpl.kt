@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service
 class TutorServiceImpl(
     private val tutorRepository: TutorRepository
 ): TutorService {
-    override fun getTutor(tutorQueryData: TutorQueryData): TutorData {
+    override suspend fun getTutor(tutorQueryData: TutorQueryData): TutorData {
         val result = tutorRepository.getTutor(tutorQueryData.toQuery())
         return TutorData.from(result)
     }
 
-    override fun getTutors(paramList: List<TutorQueryData>): List<TutorData> {
+    override suspend fun getTutors(paramList: List<TutorQueryData>): List<TutorData> {
         val queryList = paramList.map { it.toQuery() }
         val results = tutorRepository.getTutors(queryList)
         return results.map { TutorData.from(it) }

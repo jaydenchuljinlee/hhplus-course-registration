@@ -28,17 +28,17 @@ class FakeLectureRepository: LectureRepository {
         table[4L] = LECTURE_4
     }
 
-    override fun getLecture(query: LectureQueryDto): LectureEntity {
+    override suspend fun getLecture(query: LectureQueryDto): LectureEntity {
         val result = table[query.lectureId] ?: throw LectureNotFoundException()
         return result
     }
 
-    override fun getAvailableLectures(): List<LectureEntity> {
+    override suspend fun getAvailableLectures(): List<LectureEntity> {
         val results = table.values
         return results.toList()
     }
 
-    override fun enroll(command: LectureEntity): LectureEntity {
+    override suspend fun enroll(command: LectureEntity): LectureEntity {
         val lecture = table[command.id] ?: throw LectureNotFoundException()
 
         table[command.id] = lecture

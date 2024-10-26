@@ -20,19 +20,19 @@ class FakeLectureHistoryRepository: LectureHistoryRepository {
         historyies.add(TRAINEE_2_HISTORY)
     }
 
-    override fun insert(command: LectureHistoryCommandDto): LectureHistoryDto {
+    override suspend fun insert(command: LectureHistoryCommandDto): LectureHistoryDto {
         historyies.add(command.toEntity())
         return LectureHistoryDto.from(command.toEntity())
     }
 
-    override fun getEnrollmentHistories(query: LectureHistoryQueryDto): List<LectureHistoryDto> {
+    override suspend fun getEnrollmentHistories(query: LectureHistoryQueryDto): List<LectureHistoryDto> {
         val results = historyies
             .filter { query.traineeId == it.traineeId }
             .map { LectureHistoryDto.from(it) }
         return results
     }
 
-    override fun getEnrolledHistory(query: EnrolledLectureHistoryQueryDto): LectureHistoryDto? {
+    override suspend fun getEnrolledHistory(query: EnrolledLectureHistoryQueryDto): LectureHistoryDto? {
         val results = historyies
             .filter { it.traineeId == query.traineeId && it.lectureId == query.lectureId }
             .sortedBy { it.createdAt }

@@ -16,18 +16,18 @@ class LectureServiceImpl(
     private val lectureHistoryRepository: LectureHistoryRepository,
     private val validator: LectureValidator
 ): LectureService {
-    override fun getLecture(query: LectureQueryData): LectureData {
+    override suspend fun getLecture(query: LectureQueryData): LectureData {
         val result = lectureRepository.getLecture(query.toDto())
         return LectureData.from(result)
     }
 
-    override fun getAvailableLectures(): List<LectureData> {
+    override suspend fun getAvailableLectures(): List<LectureData> {
         val result = lectureRepository.getAvailableLectures()
         return result.map { LectureData.from(it) }
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    override fun enroll(query: LectureCommandData): LectureData {
+    override suspend fun enroll(query: LectureCommandData): LectureData {
         val lecture = lectureRepository.getLecture(LectureQueryDto(query.lectureId)) // 강의 정보 조회. 내부에서 유효성 검사
 
         validator.validate(query) // 수강자 정보, 신청 이력에 대한 유효성 검사
@@ -42,7 +42,7 @@ class LectureServiceImpl(
         return LectureData.from(lecture)
     }
 
-    override fun getLectureHistories(query: LectureHistoryQueryData): List<LectureHistoryData> {
+    override suspend fun getLectureHistories(query: LectureHistoryQueryData): List<LectureHistoryData> {
         val result = lectureHistoryRepository.getEnrollmentHistories(query.toDto())
         return result.map { LectureHistoryData.from(it) }
     }

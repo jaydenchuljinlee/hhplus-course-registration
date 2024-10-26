@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class TraineeServiceImpl(
     private val traineeRepository: TraineeRepository
 ): TraineeService {
-    override fun getTrainee(param: TraineeQueryData): TraineeData {
+    override suspend fun getTrainee(param: TraineeQueryData): TraineeData {
         val result = traineeRepository.getTrainees(param.toQuery())
         return TraineeData.from(result)
     }

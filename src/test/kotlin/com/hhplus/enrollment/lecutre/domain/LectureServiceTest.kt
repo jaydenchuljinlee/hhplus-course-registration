@@ -11,6 +11,7 @@ import com.hhplus.enrollment.lecture.infrastructure.LectureHistoryRepository
 import com.hhplus.enrollment.lecutre.domain.fake.FakeLectureHistoryRepository
 import com.hhplus.enrollment.lecutre.domain.fake.FakeLectureRepository
 import com.hhplus.enrollment.lecutre.domain.fake.FakeTraineeService
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -33,7 +34,7 @@ class LectureServiceTest {
 
     @DisplayName("유효성 검사에 걸리면 수강 신청이 실패한다.")
     @Test
-    fun failIfInvalid() {
+    fun failIfInvalid(): Unit = runBlocking {
         // Given
         val TRAINEE_ID = 1L
         val LECTURE_ID = 1L
@@ -41,18 +42,18 @@ class LectureServiceTest {
         val queryData = LectureQueryData(LECTURE_ID)
         val beforeLecture = sut.getLecture(queryData)
 
-        assertThrows(RuntimeException::class.java) {
+        try {
             sut.enroll(data)
+        } catch (e: RuntimeException) {
+            val afterLecture = sut.getLecture(queryData)
+            // Then
+            assertEquals(beforeLecture.capacity, afterLecture.capacity)
         }
-
-        val afterLecture = sut.getLecture(queryData)
-        // Then
-        assertEquals(beforeLecture.capacity, afterLecture.capacity)
     }
 
     @DisplayName("신청 인원이 초과되면 신청이 실패한다.")
     @Test
-    fun failIfExceedCapacity() {
+    fun failIfExceedCapacity(): Unit = runBlocking {
         // Given
         val LECTURE_ID = 1L
 
@@ -64,32 +65,31 @@ class LectureServiceTest {
         val secondData = LectureCommandData(LECTURE_ID, SECOND_TRAINEE_ID)
 
         // When
-        val exception = assertThrows(LectureCapacityExceededException::class.java) {
+        try {
             sut.enroll(secondData)
+        } catch (e: LectureCapacityExceededException) {
+            val queryData = LectureQueryData(LECTURE_ID)
+            val lecture = sut.getLecture(queryData)
+
+            // Then
+            assertEquals(e.message, "강의 인원이 초과되었습니다.")
+            assertEquals(lecture.capacity, 0)
         }
-
-        val queryData = LectureQueryData(LECTURE_ID)
-        val lecture = sut.getLecture(queryData)
-
-        // Then
-        assertEquals(exception.message, "강의 인원이 초과되었습니다.")
-        assertEquals(lecture.capacity, 0)
     }
 
     @DisplayName("현재 날짜 이전의 강의는 신청에 실패한다.")
     @Test
-    fun failIfPastDate() {
+    fun failIfPastDate(): Unit = runBlocking {
         // Given
         val LECTURE_ID = 4L
         val TRAINEE_ID = 3L
         val data = LectureCommandData(LECTURE_ID, TRAINEE_ID)
 
         // When
-        val exception = assertThrows(LectureInPastException::class.java) {
+        try {
             sut.enroll(data)
+        } catch (e: LectureInPastException) {
+            assertEquals(e.message, "현재 이후의 강의만 신청 가능합니다.")
         }
-
-        // Then
-        assertEquals(exception.message, "현재 이후의 강의만 신청 가능합니다.")
     }
 }

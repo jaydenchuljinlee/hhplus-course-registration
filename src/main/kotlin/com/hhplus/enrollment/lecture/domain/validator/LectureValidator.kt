@@ -14,7 +14,7 @@ class LectureValidator(
     private val lectureHistoryRepository: LectureHistoryRepository,
 ) {
 
-    fun validate(param: LectureCommandData) {
+    suspend fun validate(param: LectureCommandData) {
         val trainee = traineeService.getTrainee(TraineeQueryData.of(param.traineeId)) // 수강자 정보 조회
 
         val historyQuery = EnrolledLectureHistoryQueryDto.of(trainee.traineeId, param.lectureId) // 신청 이력 조회

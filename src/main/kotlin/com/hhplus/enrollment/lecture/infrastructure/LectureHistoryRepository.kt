@@ -6,7 +6,7 @@ import com.hhplus.enrollment.lecture.infrastructure.dto.LectureHistoryCommandDto
 import com.hhplus.enrollment.lecture.infrastructure.dto.LectureHistoryQueryDto
 
 interface LectureHistoryRepository {
-    fun insert(command: LectureHistoryCommandDto): LectureHistoryDto
-    fun getEnrollmentHistories(query: LectureHistoryQueryDto): List<LectureHistoryDto>
-    fun getEnrolledHistory(query: EnrolledLectureHistoryQueryDto): LectureHistoryDto?
+    suspend fun insert(command: LectureHistoryCommandDto): LectureHistoryDto
+    suspend fun getEnrollmentHistories(query: LectureHistoryQueryDto): List<LectureHistoryDto>
+    suspend fun getEnrolledHistory(query: EnrolledLectureHistoryQueryDto): LectureHistoryDto?
 }

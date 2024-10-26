@@ -24,6 +24,9 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
+	// coroutine
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
 	// repository
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	runtimeOnly("com.h2database:h2")
@@ -32,6 +35,8 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	// 코루틴 테스트 라이브러리
+	testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 }
 
 kotlin {

@@ -5,6 +5,8 @@ import com.hhplus.enrollment.lecture.controller.request.LectureRequest
 import com.hhplus.enrollment.lecture.usecase.LectureFacade
 import com.hhplus.enrollment.lecture.usecase.info.LectureInfo
 import com.hhplus.enrollment.lecutre.controller.fake.FakeLectureFacade
+import kotlinx.coroutines.future.await
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -27,13 +29,13 @@ class LectureControllerTest {
 
     @DisplayName("success: 수강 신청 API")
     @Test
-    fun testEnrollment() {
+    fun testEnrollment() = runBlocking {
         // Given
         val request = LectureRequest.Command(1L, 1L)
         val lecture = LectureInfo(1L, 1L, 10, LocalDateTime.now().plusDays(1), 'Y')
 
         // When
-        val response = sut.enroll(request)
+        val response = sut.enroll(request).await()
 
         // Then
         assertEquals(response.id, 1L)
@@ -44,12 +46,12 @@ class LectureControllerTest {
 
     @DisplayName("success: 신청 내역 조회 API")
     @Test
-    fun testGetEnrollmentHistories() {
+    fun testGetEnrollmentHistories() = runBlocking {
         // Given
         val TRAINEE_ID = 1L
 
         // When
-        val results = sut.getEnrollmentHistories(TRAINEE_ID)
+        val results = sut.getEnrollmentHistories(TRAINEE_ID).await()
 
         // Then
         assertAll(
@@ -64,12 +66,12 @@ class LectureControllerTest {
 
     @DisplayName("success: 신청 가능한 날짜 조회")
     @Test
-    fun testGetAvailableLectureList() {
+    fun testGetAvailableLectureList() = runBlocking {
         // Given
         val NOW_FORMAT = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
         // When
-        val results = sut.getLectureList()
+        val results = sut.getLectureList().await()
 
         // Then
         assertTrue(results.response.containsKey(NOW_FORMAT))

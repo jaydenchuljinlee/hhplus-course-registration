@@ -22,7 +22,7 @@ class FakeLectureFacade: LectureFacade {
         lectureHistories.add(history)
     }
 
-    override fun enroll(command: LectureCommandInfo): LectureInfo {
+    override suspend fun enroll(command: LectureCommandInfo): LectureInfo {
         val history = LectureHistoryInfo(1L, command.lectureId, command.traineeId, true, false)
         lectureHistories.add(history)
 
@@ -30,12 +30,12 @@ class FakeLectureFacade: LectureFacade {
         return lecture
     }
 
-    override fun getLectureHistories(command: LectureHistoryCommandInfo): List<LectureHistoryInfo> {
+    override suspend fun getLectureHistories(command: LectureHistoryCommandInfo): List<LectureHistoryInfo> {
         val results = lectureHistories.filter {it.traineeId == command.traineeId}
         return results
     }
 
-    override fun getGroupedAvailableLectures(): List<LectureDetailInfo> {
+    override suspend fun getGroupedAvailableLectures(): List<LectureDetailInfo> {
         val results = mutableListOf<LectureDetailInfo>()
 
         lectures.values.map {

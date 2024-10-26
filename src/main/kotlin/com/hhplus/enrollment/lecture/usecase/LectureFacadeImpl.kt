@@ -11,18 +11,18 @@ class LectureFacadeImpl(
     private val lectureService: LectureService,
     private val tutorService: TutorService
 ): LectureFacade {
-    override fun enroll(command: LectureCommandInfo): LectureInfo {
+    override suspend fun enroll(command: LectureCommandInfo): LectureInfo {
         val result = lectureService.enroll(command.toData())
         return LectureInfo.from(result)
     }
 
-    override fun getLectureHistories(command: LectureHistoryCommandInfo): List<LectureHistoryInfo> {
+    override suspend fun getLectureHistories(command: LectureHistoryCommandInfo): List<LectureHistoryInfo> {
         val results = lectureService.getLectureHistories(command.toData())
         return results.map { LectureHistoryInfo.from(it) }
     }
 
     // 퍼사드 계층에서 날짜 별 신청 가능한 강의와 강의에 대한 강의자 정보를 조합하게 됩니다.
-    override fun getGroupedAvailableLectures(): List<LectureDetailInfo> {
+    override suspend fun getGroupedAvailableLectures(): List<LectureDetailInfo> {
         val lectures = lectureService.getAvailableLectures()
 
         val tutorIds = lectures.map { it.tutorId }.distinct()

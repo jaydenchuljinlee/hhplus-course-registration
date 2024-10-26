@@ -4,9 +4,9 @@ import com.hhplus.enrollment.lecture.infrastructure.dto.LectureQueryDto
 import com.hhplus.enrollment.lecture.infrastructure.jpa.entity.LectureEntity
 
 interface LectureRepository {
-    fun getLecture(query: LectureQueryDto): LectureEntity
-    fun getAvailableLectures(): List<LectureEntity>
+    suspend fun getLecture(query: LectureQueryDto): LectureEntity
+    suspend fun getAvailableLectures(): List<LectureEntity>
 
-    fun enroll(command: LectureEntity): LectureEntity
+    suspend fun enroll(command: LectureEntity): LectureEntity
 
 }

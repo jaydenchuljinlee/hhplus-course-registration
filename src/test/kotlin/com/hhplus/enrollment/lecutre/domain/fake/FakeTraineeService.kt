@@ -20,7 +20,7 @@ class FakeTraineeService: TraineeService {
         trainees[TRAINEE_4.traineeId] = TRAINEE_4
     }
 
-    override fun getTrainee(param: TraineeQueryData): TraineeData {
+    override suspend fun getTrainee(param: TraineeQueryData): TraineeData {
         return trainees[param.traineeId] ?: throw TraineeNotFoundException()
     }
 }
